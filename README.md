@@ -6,6 +6,9 @@ An Online DJango Project for Textbook Transactions
 * DJango 2.0.7
 
 ## On Demands
+To meet the need of textbook exchange in high school, we designed a online transaction system for new and second-hand textbooks.
+Also, we can recommend certain books from the booklist, if the user fills up the department field.
+
 | Three Submodules | Functions |
 | - | :-: |
 | ☁ User System | Including `Normal User`, `Retailer` and `Administrator` |
