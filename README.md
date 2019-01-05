@@ -36,7 +36,7 @@ Relations between entities can be summarized as correct, report, own, rate and t
 | TRANSACTION | Buy a Textbook |
 
 ### Entity-Relationship Model (E-R Diagram)
-![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/E-R Diagram.png)
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/E-R_Diagram.png)
 
 ### Normalization
 The Relationship Model is normalized to 3NF.
