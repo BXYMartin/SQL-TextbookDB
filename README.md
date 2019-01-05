@@ -18,6 +18,7 @@ Also, we can recommend certain books from the booklist, if the user fills up the
 ## Relational Database Design
 ### Determining Data to be Stored
 We designed `8` entities in this project.
+
 | Entity Name | Usage |
 | :-: | :-: |
 | BOOK | Representing Textbooks |
@@ -27,6 +28,7 @@ We designed `8` entities in this project.
 
 ### Determining Data Relationships
 Relations between entities can be summarized as correct, report, own, rate and transaction.
+
 | Relations | Usage |
 | :-: | :-: |
 | CORRET | Information User Given for Booklist Corrections |
@@ -47,7 +49,7 @@ User(name, password, credit, info, isNormal, department, grade, sale)
 Admin(name, password, info)
 Book(id, name, cover, info, price, owner)
 RecommendList(names, department, grade)
-Order(id, buyer, seller, book.id, price, brate, srate, date, isFinish)
+Order(id, buyer, seller, Book.id, price, brate, srate, date, isFinish)
 Report(id, reporter, Order.id, info)
 Correct(id, corrector, info)
 ```
