@@ -41,6 +41,17 @@ Relations between entities can be summarized as correct, report, own, rate and t
 ### Normalization
 The Relationship Model is normalized to 3NF.
 
+### Apply to MySQL
+``` SQL
+User(name, password, credit, info, isNormal, department, grade, sale)
+Admin(name, password, info)
+Book(id, name, cover, info, price, owner)
+RecommendList(names, department, grade)
+Order(id, buyer, seller, book.id, price, brate, srate, date, isFinish)
+Report(id, reporter, Order.id, info)
+Correct(id, corrector, info)
+```
+
 ## Frontend Page Design
 
 ## Special Thanks
