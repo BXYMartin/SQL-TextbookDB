@@ -55,8 +55,11 @@ Correct(id, corrector, info)
 ```
 
 ## Frontend Page Design
+Main Website is designed as a Backend Control Panel.
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Main.tif)
 ### Info Page
 #### Normal User and Retailer
+
 Info Page contains all essential information for user (except for admin). Details including orders, sales, issues, shopping cart and ratings are displayed in this page.
 
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Cart.png)
@@ -67,16 +70,23 @@ To bypass the transaction process without involving any purchase, we add a BYPAS
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Purchase.png)
 
 Retailers are not permitted to purchase any books, so their shopping cart would always be empty, and their order list is also empty.
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Info.png)
+
 
 #### Administrator
 Administrator should mainly focus on 
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Issue.png)
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Handle.png)
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Settle.png)
 
 ### Market Page
-
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Shopping.png)
 ### Order Page
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Order.png)
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Finished.png)
 
 ### Other Pages
-
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Edit.png)
 
 ## Special Thanks
 This Project is intended for Database Principle Curriculum, collaborated with ![sdycodes](https://github.com/sdycodes/DatabasePro).
