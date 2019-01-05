@@ -56,7 +56,7 @@ Correct(id, corrector, info)
 
 ## Frontend Page Design
 Main Website is designed as a Backend Control Panel.
-![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Main.tif)
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Main.png)
 ### Info Page
 #### Normal User and Retailer
 
