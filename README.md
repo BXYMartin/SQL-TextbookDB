@@ -10,6 +10,12 @@ An Online DJango Project for Textbook Transactions
 We designed `8` entities in this project, represent
 ### Determining Data Relationships
 
+### Entity-Relationship Model (E-R Diagram)
+
+### Normalization
+
+## Frontend Page Design
+
 ## Special Thanks
 This Project is intended for Database Principle Curriculum, collaborated with ![sdycodes](https://github.com/sdycodes/DatabasePro).
 
