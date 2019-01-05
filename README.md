@@ -17,12 +17,29 @@ Also, we can recommend certain books from the booklist, if the user fills up the
 
 ## Relational Database Design
 ### Determining Data to be Stored
-We designed `8` entities in this project, represent 
+We designed `8` entities in this project.
+| Entity Name | Usage |
+| :-: | :-: |
+| BOOK | Representing Textbooks |
+| USER | Superclass for subclass `NRML`(Normal User), `RTLER`(Retailer) and `ADMIN`(Administrator) |
+| RLIST | Recommended List for Textbooks |
+| ORDER | User Order Details |
+
 ### Determining Data Relationships
+Relations between entities can be summarized as correct, report, own, rate and transaction.
+| Relations | Usage |
+| :-: | :-: |
+| CORRET | Information User Given for Booklist Corrections |
+| REPORT | Report an Issue on Specific Order |
+| OWN | User Currently Own this Textbook |
+| RATE | Buyer and Seller's Rate on Specific Order |
+| TRANSACTION | Buy a Textbook |
 
 ### Entity-Relationship Model (E-R Diagram)
 
+
 ### Normalization
+The Relationship Model is normalized to 3NF.
 
 ## Frontend Page Design
 
