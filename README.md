@@ -1,4 +1,4 @@
-# SQL-TextbookDB
+# Transaction Platform for Textbooks
 An Online DJango Project for Textbook Transactions
 
 ## Developing Environment
