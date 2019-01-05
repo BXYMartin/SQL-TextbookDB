@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+
+<body>
+<!-- Left side content -->
+<div id="leftSide">
+    <div class="logo"><a href="/panel/" style="font-size:medium; color:#FFF"><img style="width:25%" src="{% static 'images/logo.png' %}" alt="" /> Find Books!</a></div> <!--  -->
+
+
+    <!-- General balance widget -->
+    {% include 'panel/balance_bar.html' %}
+
+    <!-- Left navigation -->
+    {% include 'panel/left_bar.html' %}
+</div>
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    {% include 'panel/top_bar.html' %}
+    
+
+    
+    <!-- Title area -->
+    {% include 'panel/title_bar.html' %}
+
+    
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+    
+        <!-- Note -->
+        {% if msg %}
+        <div class="nNote n{{ TYPE }} hideit">
+            <p><strong>INFORMATION: </strong>{{ msg }}</p>
+        </div>
+        {% endif %}
+        
+        <!-- Widgets -->
+        <div class="widgets">
+            <div class="oneTwo">
+                <!-- Recommend list widget -->
+               <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/users.png' %}" alt="" class="titleIcon" /><h6>Recommend list</h6></div>
+                    <div class="formRow" style="width:92%">
+                        {% if names %}
+                        <input type="input" disabled="disabled" id="tags" name="names" class="tags" value="{{ names }}" about="fixed" />
+                        {% else %}
+                            <label for="tags">Oops, Recommends not available!</label>
+                        {% endif %}
+                        <div class="clear"></div>
+                    </div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <div class="fromRow">
+                        <div class="searchWidget" style="padding-left: 2%;margin-top: 2%;">
+                            <input type="text" name="correction" placeholder="if there is any mistake" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="fromRow" style="padding-left: 75%;padding-top: 3%;padding-bottom: 3%;">
+                        <input type="submit" value="Correct" action="" method="POST" class="redB" />
+                        <div class="clear"></div>
+                    </div>
+                    </form>
+                </div>
+            
+                <!-- Website stats widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/stats.png' %}" alt="" class="titleIcon" /><h6>Website statistics</h6></div>
+                    <table cellpadding="0" cellspacing="0" width="100%" class="sTable">
+                        <thead>
+                            <tr>
+                                <td width="80">Amount</td>
+                                <td>Description</td>
+                                <td width="80">Changes</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">980</a></td>
+                                <td>returned visitors</td>
+                                <td><span class="statsPlus">0.32%</span></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">1545</a></td>
+                                <td>new registrations</td>
+                                <td><span class="statsMinus">82.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">457</a></td>
+                                <td>new affiliates registrations</td>
+                                <td><span class="statsPlus">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">9543</a></td>
+                                <td>new visitors</td>
+                                <td><span class="statsPlus">4.99%</span></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">354</a></td>
+                                <td>new pending comments</td>
+                                <td><span class="statsMinus">9.67%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>   
+                </div>
+            
+                <!-- Latest update widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/refresh4.png' %}" alt="" class="titleIcon" /><h6>Latest updates</h6></div>
+                    
+                    <div class="updates">
+                    	<div class="newUpdate">
+                            <div class="uDone">
+                                <a href="#" title=""><strong>Employed the Platform onto Raspberry PI!</strong></a>
+                                <span>We've just set up a new server. Our gurus ...</span>
+                            </div>
+                            <div class="uDate"><span class="uDay">08</span>feb</div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    	<div class="newUpdate">
+                            <span class="uAlert">
+                                <a href="#" title=""><strong>Urgent Bug Fixed...</strong></a>
+                                <span>But already everything was solved. It will ...</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">08</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    	<div class="newUpdate">
+                            <span class="uDone">
+                                <a href="#" title=""><strong>Reached Temporary Goal...</strong></a>
+                                <span>We just passed 1000 sales! Congrats to all</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">07</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    	<div class="newUpdate">
+                            <span class="uNotice">
+                                <a href="#" title=""><strong>Meat a new user - Don Corleone</strong></a>
+                                <span>He is an admin!</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">06</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        	<!-- 2 columns widgets -->
+            <div class="oneTwo">
+            
+                <!-- Purchase info widget -->
+                <div class="widget">
+                    <div class="title">
+                    	<img src="{% static 'images/icons/dark/money.png' %}" alt="" class="titleIcon" />
+                        <h6>User info</h6>
+                        <div class="topIcons">
+                            <a href="#" class="tipS" title="Download statement"><img src="{% static 'images/icons/downloadTop.png' %}" alt="" /></a>
+                            <a href="#" class="tipS" title="Print invoice"><img src="{% static 'images/icons/printTop.png' %}" alt="" /></a>
+                            <a href="#" class="tipS" title="Edit"><img src="{% static 'images/icons/editTop.png' %}" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="newOrder">
+                        <div class="userRow">
+                            <a href="#" title=""><img src="{% static 'images/user.png' %}" alt="" class="floatL" /></a>
+                            <ul class="leftList">
+                                <li><a href="#" title=""><strong>{{ user.username }}</strong></a></li>
+                                <li>{{ user.dept }} {{ user.grade }}</li>
+                            </ul>
+                            <ul class="rightList">
+                                <li><a href="#" title=""> <strong>{{ user.id }}</strong></a></li>
+                                <li class="orderIcons"><span class="oUnfinished"></span><span class="oShipped tipN" title="Shipped on Feb 2nd, 2012"></span><span class="oPaid tipN" title="Paid on Feb 1st, 2012"></span></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    
+                        <div class="cLine"></div>
+                        
+                        <div class="orderRow">
+                            <ul class="leftList">
+                                <li>On Sale</li>
+                                <li>Sale amount</li>
+                                <li>Buy amount</li>
+                            </ul>
+                            <ul class="rightList">
+                                <li><strong>{{ carnum }}</strong></li>
+                                <li><strong class="green">${{ sale }}</strong></li>
+                                <li><strong class="orange">${{ buy }}</strong></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        <div class="cLine"></div>
+                        <div class="totalAmount"><h6 class="floatL blue">Total:</h6><h6 class="{% if total >= 0 %}floatR blue{% else %}floatR red{% endif %}">{{ total }}</h6><div class="clear"></div></div>
+                    </div>
+                </div>                
+        
+                <!-- New users widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/add.png' %}" alt="" class="titleIcon" /><h6>New users</h6></div>
+                    <div class="wUserInfo">
+                        <a href="#" title="" class="wUserPic"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                        <ul class="leftList">
+                            <li><a href="#" title=""><strong>{{ username }}</strong></a></li>
+                            <li><a href="#" title="">eugene@kopyov.com</a></li>
+                        </ul>
+                        <ul class="rightList">
+                            <li><a href="#" class="green"><strong>$12,248.21</strong></a></li>
+                            <li><a href="#" class="red">12 purchases</a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div class="cLine"></div>
+                    
+                    <div class="wUserInfo">
+                        <a href="#" title="" class="wUserPic"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                        <ul class="leftList">
+                            <li><a href="#" title=""><strong>Valery Dow</strong></a></li>
+                            <li><a href="#" title="">valery@dow.com</a></li>
+                        </ul>
+                        <ul class="rightList">
+                            <li><a href="#" class="green"><strong>$4,048</strong></a></li>
+                            <li><a href="#" class="red">96 purchases</a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div class="cLine"></div>
+                    
+                    <div class="wUserInfo">
+                        <a href="#" title="" class="wUserPic"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                        <ul class="leftList">
+                            <li><a href="#" title=""><strong>Liam Paterson</strong></a></li>
+                            <li><a href="#" title="">liam@paterson.com</a></li>
+                        </ul>
+                        <ul class="rightList">
+                            <li><a href="#" class="green"><strong>$94,127.20</strong></a></li>
+                            <li><a href="#" class="red">128 purchases</a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div class="cLine"></div>
+                    
+                    <div class="wUserInfo">
+                        <a href="#" title="" class="wUserPic"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                        <ul class="leftList">
+                            <li><a href="#" title=""><strong>Steve Downey</strong></a></li>
+                            <li><a href="#" title="">steve@downey.com</a></li>
+                        </ul>
+                        <ul class="rightList">
+                            <li><a href="#" class="green"><strong>$2,483.02</strong></a></li>
+                            <li><a href="#" class="red">0 purchases</a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                
+            	<!-- My tasks table widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/timer.png' %}" alt="" class="titleIcon" /><h6>My tasks</h6><div class="num"><a href="#" class="blueNum">+245</a></div></div>
+                    <table cellpadding="0" cellspacing="0" width="100%" class="sTable taskWidget">
+                        <thead>
+                            <tr>
+                                <td>Description</td>
+                                <td width="100">Status</td>
+                                <td width="60">Acts</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="taskPr"><a href="#" title="">Finish design</a></td>
+                                <td><span class="green f11">in progress</span></td>
+                                <td class="actBtns"><a href="#" title="Update" class="tipS"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a><a href="#" title="Remove" class="tipS"><img src="{% static 'images/icons/remove.png' %}" alt="" /></a></td>
+                            </tr>
+                            <tr>
+                                <td class="taskP"><a href="#" title="">Get HTML done</a></td>
+                                <td><span class="lGrey f11">pending</span></td>
+                                <td class="actBtns"><a href="#" title="Update" class="tipS"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a><a href="#" title="Remove" class="tipS"><img src="{% static 'images/icons/remove.png' %}" alt="" /></a></td>
+                            </tr>
+                            <tr>
+                                <td class="taskP"><a href="#" title="">Connect jQuery stuff</a></td>
+                                <td><span class="lGrey f11">pending</span></td>
+                                <td class="actBtns"><a href="#" title="Update" class="tipS"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a><a href="#" title="Remove" class="tipS"><img src="{% static 'images/icons/remove.png' %}" alt="" /></a></td>
+                            </tr>
+                            <tr>
+                                <td class="taskD"><a href="#" title="">Start beta testing</a></td>
+                                <td><span class="red f11">done</span></td>
+                                <td class="actBtns"><a href="#" title="Update" class="tipS"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a><a href="#" title="Remove" class="tipS"><img src="{% static 'images/icons/remove.png' %}" alt="" /></a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="clear"></div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    
+    <!-- Footer line -->
+    {% include 'panel/footer.html' %}
+
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>

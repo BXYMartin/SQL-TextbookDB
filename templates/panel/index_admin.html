@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+
+<body>
+<!-- Left side content -->
+<div id="leftSide">
+    <div class="logo"><a href="/panel/" style="font-size:medium; color:#FFF"><img style="width:25%" src="{% static 'images/logo.png' %}" alt="" /> Hello Admin!</a></div> <!--  -->
+
+
+    <!-- General balance widget -->
+    {% include 'panel/balance_bar.html' %}
+
+    <!-- Left navigation -->
+    {% include 'panel/left_bar.html' %}
+</div>
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    {% include 'panel/top_bar.html' %}
+
+    <br>
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+
+        <!-- Note -->
+        {% if msg %}
+        <div class="nNote n{{ TYPE }} hideit">
+            <p><strong>INFORMATION: </strong>{{ msg }}</p>
+        </div>
+        {% endif %}
+
+
+        <!-- Widgets -->
+        <div class="widgets">
+            <div class="clear"></div>
+        </div>
+
+        <!-- Detail info of a report-->
+        {% if detail %}
+             <div class="widget">
+                <div class="formRow">
+                    <label for="pass">Detail info: {{ detail.info }}</label>
+                    <div class="clear"></div>
+                </div>
+                 <div class="formRow">
+                    <label for="pass">Reporter: {{ detail.reporter.username }}</label>
+                     <input type="button" onclick="window.location.href='/detail/?repo_id={{ detail.id }}&p={{ detail.reporter.username }}'" value="Punish Reporter" class="dredB logMeIn" />
+                    <div class="clear"></div>
+                </div>
+                <div class="formRow">
+                    <label for="pass">Being Reported: {{ reported }}</label>
+                    <input type="button" onclick="window.location.href='/detail/?repo_id={{ detail.id }}&p={{ reported }}'" value="Punish Reported" class="dredB logMeIn" />
+                    <div class="clear"></div>
+                </div>
+        </div>
+        {% endif %}
+
+        <!-- Detail info of a recommend list -->
+         {% if add %}
+
+        <div class="widget">
+        <div class="title"><img src = {% static 'images/icons/dark/imagesList.png' %} alt="" class="titleIcon" /><h6>Edit List</h6></div>
+        <form action="" id="validate" class="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+             <fieldset>
+                <div class="formRow">
+                    <label for="login">Department:</label>
+                    <div class="loginInput"><input type="text" name="dept" value="{{ dept }}" id="dept" class="validate[required]"  /></div>
+                    <div class="clear"></div>
+
+                </div>
+
+                 <div class="formRow">
+                    <label for="login">Grade:</label>
+                    <div class="loginInput"><input type="text" name="grade" value="{{ grade }}" id="grade" class="validate[required]"  /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label form="tags">names:</label>
+                    <div class="formRight"><input type="text" id="tags" name="names" value="{{ names }}" class="tags" /></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="loginControl" style="padding-left: 85%;padding-top: 2%;padding-bottom: 2%;">
+                    <input type="submit" value="ADD" action="" method="POST" class="greenB" />
+                    <div class="clear"></div>
+                </div>
+            </fieldset>
+             </form>
+        </div>
+
+        {% endif %}
+
+        <!--Detail info of a correction-->
+        {% if see_correct %}
+            <div class="widget">
+                <div class="formRow">
+                    <label for="pass">Corrector: {{ correction.corrector.username }}</label>
+                     <div class="clear"></div>
+                </div>
+                <div class="formRow">
+                    <label for="pass">Correction info: {{ correction.info }}</label>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        {% endif %}
+    	<!-- Dynamic table of report-->
+        <div class="widget">
+            <div class="title"><img src="{% static 'images/icons/dark/full2.png' %}" alt="" class="titleIcon" /><h6>Reports</h6></div>
+            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+            <thead>
+            <tr>
+                <th>report number</th>
+                <th>Reporter</th>
+                <th>transaction number</th>
+                <th>information</th>
+                <th>Done</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for report in reports %}
+                {% if report.isFinish %}
+                    <tr class="gradeA">
+                {% else %}
+                    <tr class="gradeX">
+                {% endif %}
+                    <td><a href="/detail/?repo_id={{ report.id }}">{{ report.id }}</a></td>
+                    <td>{{ report.reporter.username }}</td>
+                    <td>{{ report.trans.id }}</td>
+                    <td>{{ report.info }}</td>
+                {% if not report.isFinish %}
+                    <td class="actBtns"><a href="/detail/?d={{ report.id }}" title="Finish" class="tipS" type="submit"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a></td>
+                {% else %}
+                    <td class="actBtns"><a href="#" title="Over" class="tipS" type="submit"><img src="{% static 'images/icons/dropped.png' %}" alt="" /></a></td>
+
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+        <!-- Dynamic table of corrections-->
+        <div class="widget">
+            <div class="title"><img src="{% static 'images/icons/dark/full2.png' %}" alt="" class="titleIcon" /><h6>Corrections</h6></div>
+            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+            <thead>
+            <tr>
+                <th>Corrections number</th>
+                <th>Corrector</th>
+                <th>close</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for correct in corrections %}
+                {% if correct.isFinish %}
+                    <tr class="gradeA">
+                {% else %}
+                    <tr class="gradeX">
+                {% endif %}
+                    <td><a href="/detail/?ci={{ correct.id }}">{{ correct.id }}</a></td>
+                    <td>{{ correct.corrector.username }}</td>
+                {% if not correct.isFinish %}
+                    <td class="actBtns"><a href="/detail/?cd={{ correct.id }}" title="Finish" class="tipS" type="submit"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a></td>
+                {% else %}
+                    <td class="actBtns"><a href="#" title="Over" class="tipS" type="submit"><img src="{% static 'images/icons/dropped.png' %}" alt="" /></a></td>
+
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+        <!--Dynamic table of recommend list-->
+        <div class="widget">
+            <div class="title"><img src="{% static 'images/icons/dark/full2.png' %}" alt="" class="titleIcon" /><h6>Recommend Lists</h6></div>
+            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+            <thead>
+            <tr>
+                <th>Department</th>
+                <th>Grade</th>
+                <th>modify</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for list in lists %}
+                    <tr class="gradeA">
+                    <td>{{ list.dept }}</td>
+                    <td>{{ list.grade }}</td>
+                    <td class="actBtns"><a href="/addrlist/?ld={{ list.dept }}&lg={{ list.grade }}" title="Modify" class="tipS" type="submit"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        <div style="padding-left: 87%;padding-top: 2%;padding-bottom: 2%;">
+            <input type="button" onclick="window.location.href='/addrlist/'" value="ADD" class="greenB" />
+        </div>
+        </div>
+
+    </div>
+
+    <!-- Footer line -->
+    {% include 'panel/footer.html' %}
+
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>
+

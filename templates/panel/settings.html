@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+    <style type="text/css">.CRZ{table-layout:fixed;}.CRZ td,.CRZ th{overflow:hidden}.CRC{height:0px;position:relative;}.CRG{margin-left:-5px;position:absolute;z-index:5;}.CRG .CRZ{position:absolute;background-color:red;filter:alpha(opacity=1);opacity:0;width:10px;height:100%;top:0px}.CRL{position:absolute;width:1px}.CRD{ border-left:1px dotted black}</style>
+<body>
+<!-- Left side content -->
+<div id="leftSide">
+    <div class="logo"><a href="/panel/" style="font-size:medium; color:#FFF"><img style="width:25%" src="{% static 'images/logo.png' %}" alt="" /> Add Books!</a></div> <!--  -->
+
+
+    <!-- General balance widget -->
+    {% include 'panel/balance_bar.html' %}
+
+    <!-- Left navigation -->
+    {% include 'panel/left_bar.html' %}
+</div>
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    {% include 'panel/top_bar.html' %}
+
+
+
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+        <div style="padding-top:20px"></div>
+        <div class="widget">
+        <div class="title"><img src = {% static 'images/icons/dark/imagesList.png' %} alt="" class="titleIcon" /><h6>Edit Account Settings</h6></div>
+        <form action="" id="validate" class="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <div class="formRow">
+                    <label for="login">Username:</label>
+                    <div class="loginInput"><input type="text" name="" value="{{ username }}" class="validate[required]" id="login" disabled="disabled" /></div>
+                    <div class="clear"></div>
+                    <input type="hidden" name="name" value="{{ username }}" />
+                </div>
+
+                <div class="formRow">
+                    <label for="pass">Old Password:</label>
+                    <div class="loginInput"><input type="password" name="oldpassword" class="validate[required]" id="password" /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="pass">New Password:</label>
+                    <div class="loginInput"><input type="password" name="password1" class="validate[required]" id="password1" /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="pass">Repeat New Password:</label>
+                    <div class="loginInput"><input type="password" name="password2" class="validate[required,equals[password1]]" id="password2" /></div>
+                    <div class="clear"></div>
+                </div>
+                {%  ifequal typ 'n' %}
+                <div class="formRow">
+                    <label for="login">Department:</label>
+                    <div class="loginInput"><input type="text" name="dept" value="{{ dept }}"  id="dept"/></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="login">Grade:</label>
+                    <div class="loginInput">
+                    <select name="grade" id="selectReq" class="validate[required]" >
+                                    <option value="1" {% ifequal grade 1 %}selected="selected"{% endifequal %}>1</option>
+                                    <option value="2" {% ifequal grade 2 %}selected="selected"{% endifequal %}>2</option>
+                                    <option value="3" {% ifequal grade 3 %}selected="selected"{% endifequal %}>3</option>
+                                    <option value="4" {% ifequal grade 4 %}selected="selected"{% endifequal %}>4</option>
+                                    <option value="5" {% ifequal grade 5 %}selected="selected"{% endifequal %}>5</option>
+                                </select>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            {% endifequal %}
+                <div class="loginControl">
+                    <input type="submit" value="Edit" class="dredB logMeIn" />
+                    <div class="clear"></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    </div>
+
+    <!-- Footer line -->
+    {% include 'panel/footer.html' %}
+
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>

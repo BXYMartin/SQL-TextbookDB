@@ -1,0 +1,26 @@
+<!-- Top fixed navigation -->
+{% load static %}
+    <div class="topNav">
+        <div class="wrapper">
+            <div class="welcome"><a href="/login/" title=""><img src="{% static 'images/userPic.png' %}" alt="" /></a><span>{% if username %}{{ username }}{% else %}Please Login...{% endif %}</span></div>
+            <div class="userNav">
+                <ul>
+                    <li><a href="{% if username %}/info/{% else %}/signup/{% endif %}" title=""><img src="{% static 'images/icons/topnav/profile.png' %}" alt="" /><span>{% if username %}Account{% else %}Signup{% endif %}</span></a></li>
+
+                    {% if username %}
+                    <li><a href="/report/" title=""><img src="{% static 'images/icons/topnav/tasks.png' %}" alt="" /><span>Reports</span></a></li>
+                    <li class="dd"><a title=""><img src="{% static 'images/icons/topnav/messages.png' %}" alt="" /><span>Transactions</span>{% if carnum %}<span class="numberTop">{{ carnum }}</span>{% endif %}</a>
+                        <ul class="userDropdown">
+                            <li><a href="/info/" title="" class="sAdd">My Cart</a></li>
+                            <li><a href="/info/" title="" class="sInbox">My Order</a></li>
+                            <li><a href="/report/" title="" class="sOutbox">My Issue</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/settings/" title=""><img src="{% static 'images/icons/topnav/settings.png' %}" alt="" /><span>Settings</span></a></li>
+                    {% endif %}
+                    <li><a href="/login/" title=""><img src="{% static 'images/icons/topnav/logout.png' %}" alt="" /><span>Log{% if username %}out{% else %}in{% endif %}</span></a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>

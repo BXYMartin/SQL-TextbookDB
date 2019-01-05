@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+    <style type="text/css">.CRZ{table-layout:fixed;}.CRZ td,.CRZ th{overflow:hidden}.CRC{height:0px;position:relative;}.CRG{margin-left:-5px;position:absolute;z-index:5;}.CRG .CRZ{position:absolute;background-color:red;filter:alpha(opacity=1);opacity:0;width:10px;height:100%;top:0px}.CRL{position:absolute;width:1px}.CRD{ border-left:1px dotted black}</style>
+<body>
+<!-- Left side content -->
+<div id="leftSide">
+    <div class="logo"><a href="/panel/" style="font-size:medium; color:#FFF"><img style="width:25%" src="{% static 'images/logo.png' %}" alt="" /> Add Books!</a></div> <!--  -->
+
+
+    <!-- General balance widget -->
+    {% include 'panel/balance_bar.html' %}
+
+    <!-- Left navigation -->
+    {% include 'panel/left_bar.html' %}
+</div>
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    {% include 'panel/top_bar.html' %}
+
+    <!-- Title area -->
+    {% include 'panel/title_bar.html' %}
+
+
+
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+
+
+
+        <!-- Widgets -->
+        <form id="usualValidate" action="" class="form" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                    <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/list.png' %}" alt="" class="titleIcon"><h6>Add A New Book</h6></div>
+                    <div class="formRow">
+                        <label>Book Name:<span class="req">*</span></label>
+                        <div class="formRight"><input type="text" name="name" class="required"/></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="formRow">
+                        <label>Book Info:<span class="req">*</span></label>
+                        <div class="formRight"><textarea rows="8" cols="" name="info" class="autoGrow required" style="height: auto; overflow: hidden;"></textarea></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="formRow">
+                        <label>Price Tag:<span class="req">*</span></label>
+                        <div class="formRight"><input type="number"  min="0.01" max="10000.00" step="0.01" name="price" class="required"/><span class="formNote">Number Specific to ¥RMB</span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="formRow">
+                    	<label><img src="{% static 'images/icons/dark/stats.png' %}" alt="" class="labelImg tipS" original-title="Book Cover:">Book Cover Image:<span class="req">*</span></label>
+                        <div class="formRight"><input type="file" name="cover" /><img src="{% static 'images/icons/dark/download.png' %}" alt="" class="inputImg tipS" original-title="Select an image..."/></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="formSubmit"><input type="submit" value="Submit" class="blueB" /></div>
+
+                <div class="clear"></div>
+                </div>
+            </fieldset>
+
+        </form>
+
+
+    </div>
+
+    <!-- Footer line -->
+    {% include 'panel/footer.html' %}
+
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>

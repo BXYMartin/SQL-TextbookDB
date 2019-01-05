@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+</head>
+
+<body class="nobg loginPage">
+
+<!-- Top fixed navigation -->
+<div class="topNav">
+    <div class="wrapper">
+        <div class="userNav">
+            <ul>
+                <li><a href="/panel/" title=""><img src = {% static 'images/icons/topnav/mainWebsite.png' %} alt="" /><span>Main website</span></a></li>
+                <li><a href="#" title=""><img src = {% static 'images/icons/topnav/profile.png' %} alt="" /><span>Contact admin</span></a></li>
+                <li><a href="#" title=""><img src = {% static 'images/icons/topnav/messages.png' %} alt="" /><span>Support</span></a></li>
+                <li><a href="login.html" title=""><img src = {% static 'images/icons/topnav/settings.png' %} alt="" /><span>Settings</span></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!-- Note -->
+{% if msg %}
+    <div class="nNote n{{ TYPE }} hideit">
+        <p><strong>INFORMATION:</strong>{{ msg }}</p>
+    </div>
+{% endif %}
+
+
+<!-- Main content wrapper -->
+<div class="loginWrapper">
+    <div class="loginLogo"><img src = {% static 'images/loginLogo.png' %} alt="" /></div>
+    <div class="widget">
+        <!-- Note -->
+        <div class="title"><img src = {% static 'images/icons/dark/files.png' %} alt="" class="titleIcon" /><h6>Signup</h6></div>
+        <form action="" id="validate" class="form" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="formRow">
+                    <label for="login">Username:</label>
+                    <div class="loginInput"><input type="text" name="name" class="validate[required]" id="login" /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="pass">Password:</label>
+                    <div class="loginInput"><input type="password" name="password1" class="validate[required]" id="pass" /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="pass">Again:</label>
+                    <div class="loginInput"><input type="password" name="password2" class="validate[required,equals[password]]" id="pass" /></div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="formRow">
+                    <label for="login">Type:</label>
+                    <div class="loginInput">
+                         <select name="type">
+                          <option value ="N">Normal</option>
+                          <option value ="R">Retailer</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="loginControl">
+                    <input type="submit" value="Sign up now!" class="dredB logMeIn" />
+                    <div class="clear"></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- Footer line -->
+{% include 'panel/footer.html' %}
+
+</body>
+</html>

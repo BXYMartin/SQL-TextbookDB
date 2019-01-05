@@ -1,0 +1,30 @@
+{% load static %}
+{% if balance %}
+<div class="genBalance">
+        <a href="#" title="" class="amount">
+            <span>Balance Income:</span>
+            <span class="balanceAmount">¥ {{ balance }}</span>
+        </a>
+        <a href="#" title="" class="amChanges">
+            <strong class="{% ifequal user.first_name 'n' %}{% if user.normal.credit >= 3.0 %}sPositive{% else %}sNegative{% endif %}{% endifequal %}
+                            {% ifequal user.first_name 'a' %}{% if user.retailer.credit >= 3.0 %}sPositive{% else %}sNegative{% endif %}{% endifequal %}
+                            {% ifequal user.first_name 'g' %}sPositive{% endifequal %}">
+                {% ifequal user.first_name 'n' %}{{ user.normal.credit }}{% endifequal %}
+                {% ifequal user.first_name 'a' %}{{ user.retailer.credit }}{% endifequal %}
+                {% ifequal user.first_name 'g' %}{{ 5.0 }}{% endifequal %}</strong>
+        </a>
+    </div>
+{% endif %}
+{% if orderSum %}
+    <div class="sidebarSep"></div>
+    <!-- Next update progress widget -->
+    <div class="sRoundStats">
+    	<ul>
+        	<li>Orders<a href="#" title=""><span class="roundZero">{{ orderSum }}</span></a></li>
+            <li>Sales<a href="#" title=""><span class="roundZero">{{ saleSum }}</span></a></li>
+            <li>Books<a href="#" title=""><span class="roundPos">{{ bookSum }}</span></a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+{% endif %}
+    <div class="sidebarSep"></div>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+<script>
+        function purchase(){
+            document.getElementById('pp_exit').click();
+        }
+</script>
+<body>
+<!-- Left side content -->
+<div id="leftSide">
+    <div class="logo"><a href="/panel/" style="font-size:medium; color:#FFF"><img style="width:25%" src="{% static 'images/logo.png' %}" alt="" /> Find Books!</a></div> <!--  -->
+
+
+    <!-- General balance widget -->
+    {% include 'panel/balance_bar.html' %}
+
+    <!-- Left navigation -->
+    {% include 'panel/left_bar.html' %}
+</div>
+
+
+<!-- Right side -->
+<div id="rightSide">
+
+    {% include 'panel/top_bar.html' %}
+
+
+    <div class="line"></div>
+
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+        <div style="padding-top:20px"></div>
+        <!-- Note -->
+        {% if msg %}
+        <div class="nNote n{{ TYPE }} hideit">
+            <p><strong>INFORMATION:</strong>{{ msg }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Widgets -->
+        <div class="widgets">
+            <!-- Search -->
+                <div class="searchWidget">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Which book are you looking for?" />
+                        <input type="submit" name="find" value="" />
+                    </form>
+                </div>
+        </div>
+
+        <!-- Media table -->
+    {% if books %}
+        <div class="widget">
+            <div class="title"><h6>Book Shop</h6></div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable">
+                <thead>
+                    <tr>
+                        <td>Cover</td>
+                        <td class="sortCol"><div>Name<span></span></div></td>
+                        <td class="sortCol"><div>Info<span></span></div></td>
+                        <td>Price</td>
+                        <td>Credit</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                    <tr>
+                        <td colspan="6">
+
+                            <div class="tPagination">
+                            <span class="step-links">
+                            <ul class="pagination">
+                                    {% if books.has_previous %}
+                                        <li class="prev"><a href="?q={{ query }}&page={{ books.previous_page_number }}" title=""></a></li>
+                                    {% endif %}
+
+
+                                    {% for page in books.paginator.page_range %}
+                                        {% if books.number == page %}
+                                            <li><a href="?q={{ query }}&page={{ page }}" title="" class="active">{{ page }}</a></li>
+                                        {% else %}
+                                            <li><a href="?q={{ query }}&page={{ page }}" title="">{{ page }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if books.has_next %}
+                                        <li class="next"><a href="?q={{ query }}&page={{ contacts.next_page_number }}" title=""></a></li>
+                                    {% endif %}
+                            </ul>
+                            </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                {% for book in books %}
+
+                   <tr>
+                        <td align="center"><a href="{{ book.cover.url }}" title="" rel="lightbox"><img src="{{ book.cover.url }}" alt="" style="width:60px" /></a></td>
+                        <td style="width:50px;text-align:center"><a href="#" title="">{{ book.name }}</a></td>
+                        <td align="center">{{ book.info }}</td>
+                        <td class="fileInfo"><span><strong>¥ </strong> {{ book.price }}</span></td>
+                        <td align="center">{% ifequal book.owner.first_name 'n' %}{{ book.owner.normal.credit }}{% endifequal %}
+                                            {% ifequal book.owner.first_name 'a' %}{{ book.owner.retailer.credit }}{% endifequal %}</td>
+                       <td class="actBtns"><a href="?add={{ book.id }}&q={{ query }}&page={{ books.number }}" title="Add to Cart" class="tipS" type="submit"><img src="{% static 'images/icons/edit.png' %}" alt="" /></a></td>
+
+                   </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+        <div class="widgets">
+            <div class="oneTwo">
+
+                <!-- Partners list widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/users.png' %}" alt="" class="titleIcon" /><h6>Authorized Retailer</h6></div>
+                    <ul class="partners">
+                        <li>
+                            <a href="#" title="" class="floatL"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                            <div class="pInfo">
+                                <a href="#" title=""><strong>Dave Armstrong</strong></a>
+                                <i>Creative director at Google Inc. Zurich</i>
+                            </div>
+                            <div class="pLinks">
+                                <a href="#" title="Direct call" class="tipW"><img src="{% static 'images/icons/pSkype.png' %}" alt="" /></a>
+                                <a href="#" title="Send an email" class="tipW"><img src="{% static 'images/icons/pEmail.png' %}" alt="" /></a>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="floatL"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                                <div class="pInfo">
+                                <a href="#" title=""><strong>Nora McDonald</strong></a>
+                                <i>Lead developer, Alaska</i>
+                            </div>
+                            <div class="pLinks">
+                                <a href="#" title="Direct call" class="tipW"><img src="{% static 'images/icons/pSkype.png' %}" alt="" /></a>
+                                <a href="#" title="Send an email" class="tipW"><img src="{% static 'images/icons/pEmail.png' %}" alt="" /></a>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="floatL"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                            <div class="pInfo">
+                                <a href="#" title=""><strong>Natalie Zimmerman</strong></a>
+                                <i>Actually it's a guy. Yeah, unexpected</i>
+                            </div>
+                            <div class="pLinks">
+                                <a href="#" title="Direct call" class="tipW"><img src="{% static 'images/icons/pSkype.png' %}" alt="" /></a>
+                                <a href="#" title="Send an email" class="tipW"><img src="{% static 'images/icons/pEmail.png' %}" alt="" /></a>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="floatL"><img src="{% static 'images/user.png' %}" alt="" /></a>
+                            <div class="pInfo">
+                                <a href="#" title=""><strong>Maria Paradeux</strong></a>
+                                <i>Very hot secretary, Playboy rockstar</i>
+                            </div>
+                            <div class="pLinks">
+                                <a href="#" title="Direct call" class="tipW"><img src="{% static 'images/icons/pSkype.png' %}" alt="" /></a>
+                                <a href="#" title="Send an email" class="tipW"><img src="{% static 'images/icons/pEmail.png' %}" alt="" /></a>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Website stats widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/stats.png' %}" alt="" class="titleIcon" /><h6>Website Statistics</h6></div>
+                    <table cellpadding="0" cellspacing="0" width="100%" class="sTable">
+                        <thead>
+                            <tr>
+                                <td width="80">Amount</td>
+                                <td>Description</td>
+                                <td width="80">Changes</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">980</a></td>
+                                <td>Current Users</td>
+                                <td><span class="statsPlus">0.32%</span></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><a href="#" title="" class="webStatsLink">1545</a></td>
+                                <td>Books Available</td>
+                                <td><span class="statsMinus">82.3%</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        	<!-- 2 columns widgets -->
+            <div class="oneTwo">
+
+
+
+                <!-- Purchase info widget -->
+                <div class="widget">
+                    <div class="title">
+                    	<img src="{% static 'images/icons/dark/money.png' %}" alt="" class="titleIcon" />
+                        <h6>Purchase info</h6>
+                        <div class="topIcons">
+                            <a href="#" class="tipS" title="Download statement"><img src="{% static 'images/icons/downloadTop.png' %}" alt="" /></a>
+                            <a href="#" class="tipS" title="Print invoice"><img src="{% static 'images/icons/printTop.png' %}" alt="" /></a>
+                            <a href="#" class="tipS" title="Edit"><img src="{% static 'images/icons/editTop.png' %}" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="newOrder">
+                        <div class="userRow">
+                            <a href="#" title=""><img src="{% static 'images/user.png' %}" alt="" class="floatL" /></a>
+                            <ul class="leftList">
+                                <li><a href="#" title=""><strong>Julia Maria Shine</strong></a></li>
+                                <li>Order status:</li>
+                            </ul>
+                            <ul class="rightList">
+                                <li><a href="#" title=""> <strong>#2112</strong></a></li>
+                                <li class="orderIcons"><span class="oUnfinished"></span><span class="oShipped tipN" title="Shipped on Feb 2nd, 2012"></span><span class="oPaid tipN" title="Paid on Feb 1st, 2012"></span></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="cLine"></div>
+
+                        <div class="orderRow">
+                            <ul class="leftList">
+                                <li>Date and time:</li>
+                                <li>Subtotal amount:</li>
+                                <li>Taxes</li>
+                            </ul>
+                            <ul class="rightList">
+                                <li><strong>Jan 31, 2012</strong> |  12:51</li>
+                                <li><strong class="green">$5,514.36</strong></li>
+                                <li><strong class="orange">- $1,158.54</strong></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="cLine"></div>
+                        <div class="totalAmount"><h6 class="floatL blue">Total:</h6><h6 class="floatR blue">$12,157.99</h6><div class="clear"></div></div>
+                    </div>
+                </div>
+                <!-- Latest update widget -->
+                <div class="widget">
+                    <div class="title"><img src="{% static 'images/icons/dark/refresh4.png' %}" alt="" class="titleIcon" /><h6>Latest updates</h6></div>
+
+                    <div class="updates">
+                    	<div class="newUpdate">
+                            <div class="uDone">
+                                <a href="#" title=""><strong>A new server is on the board!</strong></a>
+                                <span>We've just set up a new server. Our gurus ...</span>
+                            </div>
+                            <div class="uDate"><span class="uDay">08</span>feb</div>
+                            <div class="clear"></div>
+                        </div>
+
+                    	<div class="newUpdate">
+                            <span class="uAlert">
+                                <a href="#" title=""><strong>[ URGENT ] ex.ua was closed by government</strong></a>
+                                <span>But already everything was solved. It will ...</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">08</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+
+                    	<div class="newUpdate">
+                            <span class="uDone">
+                                <a href="#" title=""><strong>The goal was reached!</strong></a>
+                                <span>We just passed 1000 sales! Congrats to all</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">07</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+
+                    	<div class="newUpdate">
+                            <span class="uNotice">
+                                <a href="#" title=""><strong>Meat a new team member - Don Corleone</strong></a>
+                                <span>Very dyplomatic and flexible sales manager</span>
+                            </span>
+                            <span class="uDate"><span class="uDay">06</span>feb</span>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+    <!-- Footer line -->
+    {% include 'panel/footer.html' %}
+
+</div>
+
+<div class="clear"></div>
+
+</body>
+</html>

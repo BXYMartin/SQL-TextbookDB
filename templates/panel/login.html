@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+    <script>
+        function me(){
+            var current = document.getElementById('remMe');
+            if(current.value.toString() == "true"){
+                current.value="false";
+            }
+            else {
+                current.value="true";
+            }
+        }
+    </script>
+</head>
+
+<body class="nobg loginPage">
+
+<!-- Top fixed navigation -->
+{% include 'panel/top_bar.html' %}
+
+
+<!-- Main content wrapper -->
+<div class="loginWrapper">
+    <div class="loginLogo"><img src = {% static 'images/loginLogo.png' %} alt="" /></div>
+    <!-- Note -->
+        {% if msg %}
+        <div class="nNote n{{ TYPE }} hideit">
+            <p><strong>INFORMATION: </strong>{{ msg }}</p>
+        </div>
+        {% endif %}
+    <div class="widget">
+        <div class="title"><img src = {% static 'images/icons/dark/files.png' %} alt="" class="titleIcon" /><h6>Login</h6></div>
+        <form action="" id="validate" class="form" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="formRow">
+                    <label for="login">Username:</label>
+                    <div class="loginInput"><input type="text" name="name" class="validate[required]" id="login" /></div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="formRow">
+                    <label for="pass">Password:</label>
+                    <div class="loginInput"><input type="password" name="password" class="validate[required]" id="pass" /></div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="loginControl">
+                    <div class="rememberMe"><input type="checkbox" id="remMe" name="remember" checked="checked" value="true" onclick="me()" /><label for="remMe">Remember me</label></div>
+                    <input type="submit" value="Log me in" class="dredB logMeIn" />
+                    <div class="clear"></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>    
+
+<!-- Footer line -->
+{% include 'panel/footer.html' %}
+
+
+</body>
+</html>

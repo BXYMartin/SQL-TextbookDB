@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+{% include 'panel/header.html' %}
+{% include 'panel/loader.html' %}
+    <script>
+        function me(){
+            var current = document.getElementById('remMe');
+            if(current.value.toString() == "true"){
+                current.value="false";
+            }
+            else {
+                current.value="true";
+            }
+        }
+    </script>
+</head>
+
+<body class="nobg loginPage">
+
+<!-- Top fixed navigation -->
+{% include 'panel/top_bar.html' %}
+
+<!-- Main content wrapper -->
+<div class="errorWrapper">
+    <span class="sadEmo"></span>
+    <span class="errorTitle">Ahh, something went wrong here :(</span>
+    <span class="errorNum">500</span>
+    <span class="errorDesc">Oops! Sorry, an error has occured. Internal Server Error!</span>
+    <a href="/panel/" title="" class="button dredB"><span>Back to Dashboard</span></a>
+</div>
+
+<!-- Footer line -->
+{% include 'panel/footer.html' %}
+
+
+</body>
+</html>
