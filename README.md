@@ -74,18 +74,24 @@ Retailers are not permitted to purchase any books, so their shopping cart would 
 
 
 #### Administrator
-Administrator should mainly focus on 
+Administrator should mainly focus on solving issues. 
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Issue.png)
+After inspecting the issue, administrator can handle it.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Handle.png)
+And also, settle the dispute.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Settle.png)
 
 ### Market Page
+Users can visit the market by simply searching or through recommended booklist.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Shopping.png)
 ### Order Page
+After purchasing a textbook, it will appear in order list.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Order.png)
+If the transaction is complete, the order will show up as finished and waiting for buyer and seller to rate.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Finished.png)
 
 ### Other Pages
+Editing the recommended list.
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Edit.png)
 
 
