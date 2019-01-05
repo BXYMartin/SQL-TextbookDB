@@ -55,6 +55,28 @@ Correct(id, corrector, info)
 ```
 
 ## Frontend Page Design
+### Info Page
+#### Normal User and Retailer
+Info Page contains all essential information for user (except for admin). Details including orders, sales, issues, shopping cart and ratings are displayed in this page.
+
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Cart.png)
+
+
+To bypass the transaction process without involving any purchase, we add a BYPASS PURCHASE button in the leftmost bottom of the QR code. Dynamic QR code is not implemented in this example.
+
+![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Purchase.png)
+
+Retailers are not permitted to purchase any books, so their shopping cart would always be empty, and their order list is also empty.
+
+#### Administrator
+Administrator should mainly focus on 
+
+### Market Page
+
+### Order Page
+
+### Other Pages
+
 
 ## Special Thanks
 This Project is intended for Database Principle Curriculum, collaborated with ![sdycodes](https://github.com/sdycodes/DatabasePro).
