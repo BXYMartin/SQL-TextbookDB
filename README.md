@@ -88,6 +88,7 @@ Administrator should mainly focus on
 ### Other Pages
 ![image](https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Edit.png)
 
+
 ## Special Thanks
 This Project is intended for Database Principle Curriculum, collaborated with ![sdycodes](https://github.com/sdycodes/DatabasePro).
 
