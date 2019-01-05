@@ -5,9 +5,16 @@ An Online DJango Project for Textbook Transactions
 * Python 3.6.5
 * DJango 2.0.7
 
+## On Demands
+| Three Submodules | Functions |
+| :-: | :-: |
+| User System | Including `Normal User` `Retailer` `Administrator` |
+| Transaction System | Core Transaction and Grading System |
+| Operational System | Booklist Corrections and Dispute Settlement |
+
 ## Relational Database Design
 ### Determining Data to be Stored
-We designed `8` entities in this project, represent
+We designed `8` entities in this project, represent 
 ### Determining Data Relationships
 
 ### Entity-Relationship Model (E-R Diagram)
