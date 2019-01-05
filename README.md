@@ -66,13 +66,11 @@ Info Page contains all essential information for user (except for admin). Detail
 
 
 To bypass the transaction process without involving any purchase, we add a BYPASS PURCHASE button in the leftmost bottom of the QR code. Dynamic QR code is not implemented in this example.
-<center>
-<img src="https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Purchase.png" width="50%" height="50%" />
-</center>
+<img src="https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Purchase.png" width="50%" height="50%" align="center" />
 Retailers are not permitted to purchase any books, so their shopping cart would always be empty, and their order list is also empty.
-<center>
-<img src="https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Info.png" width="50%" height="50%" />
-</center>
+
+<img src="https://github.com/BXYMartin/SQL-TextbookDB/blob/master/imgs/Info.png" width="50%" height="50%" align="center" />
+
 
 #### Administrator
 Administrator should mainly focus on solving issues. 
