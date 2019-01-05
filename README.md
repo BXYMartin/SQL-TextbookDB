@@ -6,9 +6,9 @@ An Online DJango Project for Textbook Transactions
 * DJango 2.0.7
 
 ## Relational Database Design
-### Entities
+### Determining Data to be Stored
 We designed `8` entities in this project, represent
-### Relations
+### Determining Data Relationships
 
 ## Special Thanks
 This Project is intended for Database Principle Curriculum, collaborated with ![sdycodes](https://github.com/sdycodes/DatabasePro).
