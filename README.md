@@ -8,8 +8,8 @@ An Online DJango Project for Textbook Transactions
 ## On Demands
 | Three Submodules | Functions |
 | :-: | :-: |
-| ☺ User System | Including `Normal User`, `Retailer` and `Administrator` |
-| ↔ Transaction System | Core Transaction and Grading System |
+| ☁ User System | Including `Normal User`, `Retailer` and `Administrator` |
+| ✉ Transaction System | Core Transaction and Grading System |
 | ✎ Operational System | Booklist Corrections and Dispute Settlement |
 
 ## Relational Database Design
